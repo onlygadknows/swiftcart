@@ -8,6 +8,7 @@ const products = [
         category: 'Electronics',
         price: 129.99,
         countInStock: 15,
+        rating: 4,
         numReviews: 20,
     },
     {
@@ -19,6 +20,7 @@ const products = [
         category: 'Electronics',
         price: 199.99,
         countInStock: 8,
+        rating: 4.5,
         numReviews: 25,
     },
     {
@@ -30,6 +32,7 @@ const products = [
         category: 'Wearable Technology',
         price: 299.99,
         countInStock: 5,
+        rating: 4.5,
         numReviews: 30,
     },
     {
@@ -41,6 +44,7 @@ const products = [
         category: 'Electronics',
         price: 1499.99,
         countInStock: 3,
+        rating: 3,
         numReviews: 15,
     },
     {
@@ -52,6 +56,7 @@ const products = [
         category: 'Computers',
         price: 1799.99,
         countInStock: 10,
+        rating: 5,
         numReviews: 18,
     },
 ];

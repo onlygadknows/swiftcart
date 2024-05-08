@@ -7,3 +7,19 @@
     height: 50px;
     margin-right: 5px;
 }
+
+/* RATINGS */
+.rating {
+  
+}
+
+.rating span {
+    color: #FFC100;
+    font-size: 30px;
+}
+
+.rating-text {
+    color: #333;
+    font-size: 16px;
+}
+

@@ -2,10 +2,27 @@
     height: 250px;
 }
 
-.custom-shadow {
+.product-card {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: .3s;
+    min-height: 450px;
+    height: auto;
 }
 
-.product-name {
+.product-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+/* .reviews {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
+
+.product-title {
     color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
