@@ -1,13 +1,18 @@
 import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
+import '../assets/styles/custom_css.css';
+import logo from '../assets/image/swift.png'
 
 const Header = () => {
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar variant="dark" expand="lg" collapseOnSelect className="custom-navbar" >
         <Container>
-          <Navbar.Brand href="/">SwiftCart</Navbar.Brand>
+          <Navbar.Brand href="/">
+          <img src={logo} alt="" className="brand-logo" />
+
+            SwiftCart</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">

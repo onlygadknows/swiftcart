@@ -9,6 +9,7 @@ const Footer = () => {
             <Row>
                 <Col className='text=center py-3'>
                     <p>SwiftCart &copy; {currentYear}</p>
+                    <p>Created by: Gad Ashell Sususco</p>
                 </Col>
             </Row>
         </Container>
