@@ -1,19 +1,20 @@
 import { Card } from "react-bootstrap"
 import '../assets/styles/custom_product.css';
+import { Link } from "react-router-dom";
 
 
-const Product = ({ product }) => {
+const Product = ({ product }) => {Link
   return (
-    <Card className="my-3 p-3 rounded">
-        <a href={`/product/${product._id}`}>
+    <Card className="my-3 p-3 rounded custom-shadow">
+        <Link to={`/product/${product._id}`}>
             <Card.Img src={product.image} variant="top" className="product-image" />
-        </a>
+        </Link>
         <Card.Body>
-            <a href={`/product/${product._id}`}>
+            <Link to={`/product/${product._id}`}>
                 <Card.Title as="div">
-                    <strong>{product.name}</strong>
+                    <strong className="product-name">{product.name}</strong>
                 </Card.Title>
-            </a>
+            </Link>
 
             <Card.Text as="h3">
                 ${product.price}

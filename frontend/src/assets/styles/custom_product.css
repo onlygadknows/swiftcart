@@ -1,3 +1,11 @@
 .product-image {
-    height: 200px;
+    height: 250px;
+}
+
+.custom-shadow {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.product-name {
+    color: #333;
 }
