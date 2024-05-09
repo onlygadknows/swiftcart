@@ -1,13 +1,26 @@
-import { useParams, Link } from "react-router-dom";
-import products from "../products";
+import { useParams, Link} from "react-router-dom";
+import {useState, useEffect} from "react"
+// import products from "../products";
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Rating from "../components/Rating";
 import "../assets/styles/custom_product.css";
 
 const ProductScreen = () => {
+  const [product, setProduct] = useState([]);
   const { id: productId } = useParams();
-  const product = products.find((p) => p._id === productId);
+  // const product = products.find((p) => p._id === productId);
   console.log(product);
+  useEffect(() => { //fetching data from server
+    const fetchData = async () => {
+      const response = await fetch(`http://localhost:8000/api/products/${productId}`);
+      const data = await response.json();
+      if (response.ok) {
+        setProduct(data);
+      }
+    };
+
+    fetchData();
+  }, [productId]);
   return (
     <>
       <Link className="btn btn-light my-3" to="/">
