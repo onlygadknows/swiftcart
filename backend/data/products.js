@@ -1,6 +1,5 @@
 const products = [
     {
-        _id: '1',
         name: 'Wireless Headset Bluetooth Headphones - Model X1',
         image: '../public/product_images/wireless_bluetooth.jpeg',
         description: 'Immerse yourself in your music with the Model X1 Wireless Headset Bluetooth Headphones. Featuring advanced Bluetooth technology, high-fidelity audio, and a built-in microphone, these headphones deliver an unparalleled listening experience.',
@@ -12,7 +11,6 @@ const products = [
         numReviews: 20,
     },
     {
-        _id: '2',
         name: 'Premium Noise-Cancelling Headphones - Pro Edition',
         image: '../public/product_images/soundmaster.jpg',
         description: 'Escape the noise and enjoy crystal-clear audio with our Premium Noise-Cancelling Headphones - Pro Edition. With active noise cancellation, superior sound quality, and a sleek design, these headphones are perfect for audiophiles on the go.',
@@ -24,7 +22,6 @@ const products = [
         numReviews: 25,
     },
     {
-        _id: '3',
         name: 'Smartwatch Series 5 - Limited Edition',
         image: '../public/product_images/techtrend_smartwatch.webp',
         description: 'Stay connected and stylish with the Smartwatch Series 5 - Limited Edition. Featuring a stunning OLED display, advanced health tracking, and seamless integration with your devices, this smartwatch is a must-have accessory for modern living.',
@@ -36,7 +33,6 @@ const products = [
         numReviews: 30,
     },
     {
-        _id: '4',
         name: '4K Ultra HD Smart TV - 65" Curved',
         image: '../public/product_images/visiontech_smart_tv.jpg',
         description: 'Experience entertainment like never before with our 4K Ultra HD Smart TV - 65" Curved. With stunning visuals, built-in streaming apps, and immersive sound, this TV delivers an unparalleled viewing experience.',
@@ -48,7 +44,6 @@ const products = [
         numReviews: 15,
     },
     {
-        _id: '5',
         name: 'Gaming Laptop - TitanX',
         image: '../public/product_images/cybergamer_titanx.jpg',
         description: 'Dominate the competition with our Gaming Laptop - TitanX. Featuring a powerful processor, high-end graphics card, and lightning-fast SSD, this laptop is built for gamers who demand the best.',
