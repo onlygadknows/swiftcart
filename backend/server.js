@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 dotenv.config();
 import connectDB from './config/config.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
@@ -15,6 +16,9 @@ connectDB(); // connect to MongoDB
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+//cookie parser middleware - allow to access cookies and the jwt
+app.use(cookieParser())
 
 app.get('/', (req, res) => {
     res.send('API is running')
