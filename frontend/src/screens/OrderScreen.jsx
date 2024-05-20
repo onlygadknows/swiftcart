@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { formatDate } from "../utils/dateConvertUtils";
 import {
   Row,
   Col,
   ListGroup,
   Image,
-  Form,
   Button,
   Card,
 } from "react-bootstrap";
@@ -16,6 +16,7 @@ import {
   useGetOrderDetailsQuery,
   usePayOrderMutation,
   useGetPayPalCliendIdQuery,
+  useDeliverOrderMutation,
 } from "../slices/ordersApiSlice";
 import "../assets/styles/custom_product.css";
 import { toast } from "react-toastify";
@@ -31,6 +32,8 @@ const OrderScreen = () => {
   } = useGetOrderDetailsQuery(orderId);
 
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
+
+  const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
 
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
@@ -62,18 +65,6 @@ const OrderScreen = () => {
     }
   }, [order, paypal, paypalDispatch, loadingPayPal, errorPayPal]);
 
-  const formatDate = (dateString) => {
-    const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric'
-    };
-    return new Date(dateString).toLocaleString(undefined, options);
-  };
-
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
@@ -95,17 +86,29 @@ const OrderScreen = () => {
     toast.error(err.message);
   }
   function createOrder(data, actions) {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: order.totalPrice,
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: {
+              value: order.totalPrice,
+            },
           },
-        },
-      ],
-    }).then((orderId) => {
-      return orderId;
-    });
+        ],
+      })
+      .then((orderId) => {
+        return orderId;
+      });
+  }
+
+  const deliverOrderHandler = async () => {
+    try {
+      await deliverOrder(orderId);
+      refetch();
+      toast.success('Order delivered!')
+    } catch (err) {
+      toast.error(err?.data?.message || err.message)
+    }
   }
 
   return isLoading ? (
@@ -136,7 +139,7 @@ const OrderScreen = () => {
               </p>
               {order.isDelivered ? (
                 <Message variant="success">
-                  Delivered on {order.deliveredAt}
+                  Delivered on {formatDate(order.deliveredAt)}
                 </Message>
               ) : (
                 <Message variant="danger">Not Delivered </Message>
@@ -149,7 +152,9 @@ const OrderScreen = () => {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant="success">Paid on {formatDate(order.paidAt)}</Message>
+                <Message variant="success">
+                  Paid on {formatDate(order.paidAt)}
+                </Message>
               ) : (
                 <Message variant="danger">Not Paid</Message>
               )}
@@ -240,6 +245,15 @@ const OrderScreen = () => {
                   )}
                 </ListGroup.Item>
               )}
+                {loadingDeliver && <Loader />}
+                {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button type='button' className="btn btn-block" onClick={deliverOrderHandler}>
+                      Mark as Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
+
             </ListGroup>
           </Card>
         </Col>
