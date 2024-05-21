@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import {
   useUpdateProductMutation,
   useGetProductDetailsQuery,
+  useUploadProductImageMutation,
 } from "../../slices/productsApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../../components/FormContainer";
@@ -27,10 +28,12 @@ const ProductEditScreen = () => {
     error,
   } = useGetProductDetailsQuery(productId);
 
-  console.log(product);
 
   const [updateProduct, { isLoading: loadingUpdate }] =
     useUpdateProductMutation();
+
+  const [uploadProductImage, { isLoading: loadingUpload }] =
+    useUploadProductImageMutation();
 
   const navigate = useNavigate();
 
@@ -48,64 +51,123 @@ const ProductEditScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const updatedProduct = {
-        _id: productId,
-        name,
-        price,
-        image,
-        brand,
-        countInStock,
-        description
-    }
+      _id: productId,
+      name,
+      price,
+      image,
+      brand,
+      countInStock,
+      description,
+    };
 
     const result = await updateProduct(updatedProduct);
-    if(result.error) {
-        toast.error(result.error);
+    if (result.error) {
+      toast.error(result.error);
     } else {
-        toast.success('Product updated successfully!')
-        navigate('/admin/productlist')
+      toast.success("Product updated successfully!");
+      navigate("/admin/productlist");
     }
-  }
+  };
 
-  return <>
-  <Link to="/admin/productlist" className="btn btn-light my-3">
-    Go back
-  </Link>
+  const uploadFileHandler = async (e) => {
+    const formData = new FormData();
+    formData.append("image", e.target.files[0]);
+    console.log(e.target.files[0])
 
-  <FormContainer>
-    <h1>Edit Product</h1>
-    {loadingUpdate && <Loader />}
+    try {
+      const res = await uploadProductImage(formData).unwrap();
+      toast.success(res.message);
+      setImage(res.image);
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
 
-    {isLoading ? <Loader /> : error ? <Message variant="danger">
-        {error}
-    </Message> : (
-        <Form onSubmit={submitHandler}>
-            {/* image input placeholder */}
+  return (
+    <>
+      <Link to="/admin/productlist" className="btn btn-light my-3">
+        Go back
+      </Link>
+
+      <FormContainer>
+        <h1>Edit Product</h1>
+        {loadingUpdate && <Loader />}
+
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant="danger">{error}</Message>
+        ) : (
+          <Form onSubmit={submitHandler}>
             <Form.Group controlId="name" className="my-2">
-                <Form.Label>Name</Form.Label>
-                <Form.Control type="name" placeholder="Enter Name" value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="name"
+                placeholder="Enter Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="image" className="my-2">
+              <Form.Label>Upload Image</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Upload Image URL"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></Form.Control>
+              <Form.Control
+                type="file"
+                label="Choose file"
+                onChange={uploadFileHandler}
+              ></Form.Control>
             </Form.Group>
             <Form.Group controlId="price" className="my-2">
-                <Form.Label>Price</Form.Label>
-                <Form.Control type="name" placeholder="Enter Price" value={price} onChange={(e) => setPrice(e.target.value)}></Form.Control>
+              <Form.Label>Price</Form.Label>
+              <Form.Control
+                type="name"
+                placeholder="Enter Price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              ></Form.Control>
             </Form.Group>
             <Form.Group controlId="brand" className="my-2">
-                <Form.Label>Brand</Form.Label>
-                <Form.Control type="text" placeholder="Enter Brand Name" value={brand} onChange={(e) => setBrand(e.target.value)}></Form.Control>
+              <Form.Label>Brand</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Brand Name"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+              ></Form.Control>
             </Form.Group>
             <Form.Group controlId="description" className="my-2">
-                <Form.Label>Description</Form.Label>
-                <Form.Control type="text" placeholder="Enter Description" value={description} onChange={(e) => setDescription(e.target.value)}></Form.Control>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></Form.Control>
             </Form.Group>
             <Form.Group controlId="countInStock" className="my-2">
-                <Form.Label>Count in Stock</Form.Label>
-                <Form.Control type="number" placeholder="How many stocks?" value={countInStock} onChange={(e) => setCountInStock(e.target.value)}></Form.Control>
+              <Form.Label>Count in Stock</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="How many stocks?"
+                value={countInStock}
+                onChange={(e) => setCountInStock(e.target.value)}
+              ></Form.Control>
             </Form.Group>
 
-            <Button type="submit" variant="primary" className="my-2">EDIT</Button>
-        </Form>
-    )}
-  </FormContainer>
-  </>;
+            <Button type="submit" variant="primary" className="my-2">
+              EDIT
+            </Button>
+          </Form>
+        )}
+      </FormContainer>
+    </>
+  );
 };
 
 export default ProductEditScreen;
