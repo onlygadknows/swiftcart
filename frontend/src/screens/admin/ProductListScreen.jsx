@@ -10,6 +10,7 @@ import {
 } from "../../slices/productsApiSlice";
 import { formatDate } from "../../utils/dateConvertUtils";
 import { toast } from "react-toastify";
+import { useDeleteProductMutation } from "../../slices/productsApiSlice";
 import "../../assets/styles/custom_css.css";
 
 const ProductListScreen = () => {
@@ -18,8 +19,19 @@ const ProductListScreen = () => {
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
 
-  const deleteHandler = (productId) => {
-    console.log("delete", productId);
+  const [deleteProduct, { isLoading: loadingDelete }] =
+    useDeleteProductMutation();
+
+  const deleteHandler = async (productId) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      try {
+        await deleteProduct(productId);
+        refetch();
+        toast.success('Product deleted!')
+      } catch (err) {
+        toast.error(err.data?.message || err.error);
+      }
+    }
   };
 
   const createProductHandler = async () => {
@@ -47,6 +59,7 @@ const ProductListScreen = () => {
         </Col>
       </Row>
       {loadingCreate && <Loader />}
+      {loadingDelete && <Loader />}
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -71,8 +84,7 @@ const ProductListScreen = () => {
                   <td>{product.name}</td>
                   <td>
                     {" "}
-                    <span>&#x20B1;</span>{" "}
-                    {product.price}
+                    <span>&#x20B1;</span> {product.price}
                   </td>
                   <td>{product.countInStock}</td>
                   <td>{product.brand}</td>

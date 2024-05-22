@@ -20,7 +20,7 @@ const reviewSchema = mongoose.Schema({
         required: true,
     }
 }, {
-    timestamp: true
+    timestamps: true
 })
 
 const productSchema = new mongoose.Schema({
@@ -41,11 +41,15 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    category: {
+        type: String,
+        required: true,
+    },
     description: {
         type: String,
         required: true,
     },
-    // reviews: [reviewSchema],
+    reviews: [reviewSchema],
     numReviews: {
         type: Number,
         required: true,

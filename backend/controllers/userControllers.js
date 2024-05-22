@@ -128,21 +128,38 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 //@route GET /api/users
 //@access Private/admin
 const getUsers = asyncHandler(async (req, res) => {
-    res.send('get user profile')
+    const users = await User.find({});
+    res.status(200).json(users);
 });
 
 //@desc get users 
 //@route GET /api/users
 //@access Private/admin/:id
 const getUsersByID = asyncHandler(async (req, res) => {
-    res.send('get user by ID')
-});
+
+    const user = await User.findById(req.params.id)
+    if(user) {
+        return res.json(user);
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+}
+})
 
 //@desc Delete users 
 //@route DELETE /api/users/:id
 //@access Private/admin
 const deleteUser = asyncHandler(async (req, res) => {
     res.send('delete user')
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+        await User.deleteOne({_id: user._id});
+        res.status(200).json({message: "User deleted successfully!"})
+    } else {
+        res.status(404)
+        throw new Error('User not found!');
+    }
 });
 
 //@desc Update users 
@@ -150,6 +167,20 @@ const deleteUser = asyncHandler(async (req, res) => {
 //@access Private/admin
 const updateUser = asyncHandler(async (req, res) => {
     res.send('update user')
+    const {name, email, isAdmin} = req.body;
+
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+        user.name = name;
+        user.email = email;
+        user.isAdmin = isAdmin;
+        const updatedUser = await user.save();
+        res.json(updatedUser);
+    } else {
+        res.status(404)
+        throw new Error('User not found!');
+    }
 });
 
 export {

@@ -21,6 +21,8 @@ const ProductEditScreen = () => {
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
 
+
+
   const {
     data: product,
     isLoading,
@@ -34,6 +36,7 @@ const ProductEditScreen = () => {
 
   const [uploadProductImage, { isLoading: loadingUpload }] =
     useUploadProductImageMutation();
+
 
   const navigate = useNavigate();
 
@@ -68,20 +71,25 @@ const ProductEditScreen = () => {
       navigate("/admin/productlist");
     }
   };
-
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
-    console.log(e.target.files[0])
-
+  
     try {
       const res = await uploadProductImage(formData).unwrap();
       toast.success(res.message);
+      
+      // Construct the full URL for the image
+      // const fullImagePath = `http://localhost:8000${res.image}`;
+      
+      // Set the full image URL in the state
       setImage(res.image);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
   };
+
+
 
   return (
     <>

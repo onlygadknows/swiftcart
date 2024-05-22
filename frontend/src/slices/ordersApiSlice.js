@@ -52,7 +52,6 @@ export const ordersApiSlice = apiSlice.injectEndpoints({
         url: `${ORDERS_URL}/${orderId}/deliver`,
         method: 'PUT',
         credentials: 'include',
-
       })
     })
   }),
