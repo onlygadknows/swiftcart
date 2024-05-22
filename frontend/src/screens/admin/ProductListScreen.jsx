@@ -1,6 +1,7 @@
 import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import { Table, Button, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 import { FaTimes, FaEdit, FaTrash } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
@@ -12,9 +13,11 @@ import { formatDate } from "../../utils/dateConvertUtils";
 import { toast } from "react-toastify";
 import { useDeleteProductMutation } from "../../slices/productsApiSlice";
 import "../../assets/styles/custom_css.css";
+import Paginate from "../../components/Paginate";
 
 const ProductListScreen = () => {
-  const { data: products, refetch, isLoading, error } = useGetProductsQuery();
+  const {pageNumber} = useParams();
+  const { data, refetch, isLoading, error } = useGetProductsQuery({pageNumber});
 
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
@@ -50,7 +53,7 @@ const ProductListScreen = () => {
     <>
       <Row className="align-items-center">
         <Col>
-          <h1>Products</h1>
+          <h2>Welcome, Admin!</h2>
         </Col>
         <Col className="text-end">
           <Button className="btn-sm m-3" onClick={createProductHandler}>
@@ -74,11 +77,12 @@ const ProductListScreen = () => {
                 <th>PRICE</th>
                 <th>STOCK</th>
                 <th>BRAND</th>
+                <th>CATEGORY</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
+              {data.products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>
@@ -88,6 +92,7 @@ const ProductListScreen = () => {
                   </td>
                   <td>{product.countInStock}</td>
                   <td>{product.brand}</td>
+                  <td>{product.category}</td>
                   <td>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
                       <Button variant="light" className="btn-sm mx-2">
@@ -106,6 +111,7 @@ const ProductListScreen = () => {
               ))}
             </tbody>
           </Table>
+          <Paginate pages={data.pages} page={data.page} isAdmin={true} />
         </>
       )}
     </>

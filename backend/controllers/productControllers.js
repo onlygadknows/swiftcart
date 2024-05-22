@@ -6,8 +6,13 @@ import Product from "../models/productModel.js";
 //@route GET /api/products
 //@access Public
 const getProducts = asyncHandler(async (req, res) => {
-    const products = await Product.find({});
-    res.json(products)
+    const pageSize = 4;
+    const page = Number(req.query.pageNumber) || 1;
+    const count = await Product.countDocuments()
+    const products = await Product.find({})
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+    res.json({products, page, pages: Math.ceil(count / pageSize)});
 });
 
 //@desc Fetch all product
@@ -34,6 +39,7 @@ const createProduct = asyncHandler(async (req, res) => {
         user: req.user._id,
         image: '/images/sample.jpg',
         brand: 'Sample brand',
+        category: 'Sample category',
         rating: 0,
         countInStock: 0,
         numReviews: 0,
@@ -48,7 +54,7 @@ const createProduct = asyncHandler(async (req, res) => {
 //@route GET /api/products/:id
 //@access private/admin
 const updateProduct = asyncHandler(async (req, res) => {
-    const { name, price, description, image, brand, countInStock} = req.body;
+    const { name, price, description, image, brand, category, countInStock} = req.body;
 
     const product = await Product.findById(req.params.id);
 
@@ -58,6 +64,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         product.description = description;
         product.image = image;
         product.brand = brand;
+        product.category = category;
         product.countInStock = countInStock;
 
         const updatedProduct = await product.save();

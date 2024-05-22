@@ -18,10 +18,9 @@ const ProductEditScreen = () => {
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
   const [brand, setBrand] = useState("");
+  const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
-
-
 
   const {
     data: product,
@@ -30,13 +29,11 @@ const ProductEditScreen = () => {
     error,
   } = useGetProductDetailsQuery(productId);
 
-
   const [updateProduct, { isLoading: loadingUpdate }] =
     useUpdateProductMutation();
 
   const [uploadProductImage, { isLoading: loadingUpload }] =
     useUploadProductImageMutation();
-
 
   const navigate = useNavigate();
 
@@ -46,6 +43,7 @@ const ProductEditScreen = () => {
       setPrice(product.price);
       setImage(product.image);
       setBrand(product.brand);
+      setCategory(product.category);
       setCountInStock(product.countInStock);
       setDescription(product.description);
     }
@@ -59,6 +57,7 @@ const ProductEditScreen = () => {
       price,
       image,
       brand,
+      category,
       countInStock,
       description,
     };
@@ -74,22 +73,20 @@ const ProductEditScreen = () => {
   const uploadFileHandler = async (e) => {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
-  
+
     try {
       const res = await uploadProductImage(formData).unwrap();
       toast.success(res.message);
-      
+
       // Construct the full URL for the image
       // const fullImagePath = `http://localhost:8000${res.image}`;
-      
+
       // Set the full image URL in the state
       setImage(res.image);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
   };
-
-
 
   return (
     <>
@@ -119,12 +116,12 @@ const ProductEditScreen = () => {
 
             <Form.Group controlId="image" className="my-2">
               <Form.Label>Upload Image</Form.Label>
-              <Form.Control
+              {/* <Form.Control
                 type="text"
                 placeholder="Upload Image URL"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
-              ></Form.Control>
+              ></Form.Control> */}
               <Form.Control
                 type="file"
                 label="Choose file"
@@ -148,6 +145,15 @@ const ProductEditScreen = () => {
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
               ></Form.Control>
+              <Form.Group controlId="brand" className="my-2">
+                <Form.Label>Category</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Category Name"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
             </Form.Group>
             <Form.Group controlId="description" className="my-2">
               <Form.Label>Description</Form.Label>
