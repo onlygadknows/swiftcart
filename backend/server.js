@@ -15,7 +15,7 @@ const app = express()
 import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: ALLOWED_ORIGIN, 
     credentials: true, 
   }));
 
