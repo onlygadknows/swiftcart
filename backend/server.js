@@ -15,8 +15,8 @@ const app = express()
 
 app.use(cors({
     credentials: true,
-    origin: process.env.ALLOWED_ORIGIN})
-);
+    origin: process.env.ALLOWED_ORIGIN,
+}));
     
 connectDB(); // connect to MongoDB
 
