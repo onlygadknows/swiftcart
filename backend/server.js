@@ -40,7 +40,8 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
 app.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYPAL_CLIENT_ID}));
 
-app.use('/uploads', express.static(path.join('/uploads'))); // Correctly set up static file serving
+const __dir = path.resolve();
+app.use('/uploads', express.static(path.join(__dir, '/uploads'))); // Correctly set up static file serving
 
 
 app.use(notFound)

@@ -13,6 +13,7 @@ import {
 import { FaTrash } from "react-icons/fa";
 import Message from "../components/Message";
 import { addToCart, removeFromCart } from "../slices/cartSlice";
+import '../assets/styles/custom_css.css'
 
 const CartScreen = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const CartScreen = () => {
         ) : (
           <ListGroup variant="flush">
             {cartItems.map((item) => (
-              <ListGroup.Item key={item._id}>
+              <ListGroup.Item key={item._id} as="div" className="shopping-cart">
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
@@ -70,7 +71,7 @@ const CartScreen = () => {
                     </Form.Control>
                   </Col>
                   <Col md={2}>
-                    <Button type="button" variant="light" onClick={() => removeFromCartHandler(item._id)}>
+                    <Button type="button" variant="danger" onClick={() => removeFromCartHandler(item._id)}>
                       <FaTrash />
                     </Button>
                   </Col>

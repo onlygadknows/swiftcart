@@ -1,11 +1,17 @@
 .custom-navbar {
-    background-color: #456672;
+    background-color: #333;
 }
 
 .brand-logo {
     width: 50px;
     height: 50px;
     margin-right: 5px;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* RATINGS */
@@ -22,5 +28,16 @@
 
 th, td {
     text-align: center;
+}
+
+.shopping-cart {
+    background-color: #CDE8E5;
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 15px;
+}
+
+.btn-block {
+    background-color: #456672;
 }
 

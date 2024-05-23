@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "../assets/styles/custom_css.css";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
+import SearchBox from "./SearchBox";
 import logo from "../assets/image/swift.png";
 
 const Header = () => {
@@ -37,15 +38,17 @@ const Header = () => {
       >
         <Container>
           <LinkContainer to="/">
-            <Navbar.Brand>
+            <Navbar.Brand as="div" className="brand-container">
               <img src={logo} alt="" className="brand-logo" />
               SwiftCart
             </Navbar.Brand>
           </LinkContainer>
 
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
+            <SearchBox />
               <LinkContainer to="/cart">
                 <Nav.Link>
                   <FaShoppingCart /> Cart
