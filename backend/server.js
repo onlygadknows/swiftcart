@@ -15,9 +15,10 @@ const app = express()
 import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 
 app.use(cors({
-    credentials: true,
-    origin: ALLOWED_ORIGIN,
-}));
+    origin: 'http://localhost:5173', 
+    credentials: true, 
+  }));
+
     
 connectDB(); // connect to MongoDB
 
