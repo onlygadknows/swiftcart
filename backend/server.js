@@ -18,9 +18,16 @@ app.use(cors({
     origin: ALLOWED_ORIGIN, 
     credentials: true, 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Request-With'],
-  }));
+    allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
+}));
 
+
+// app.use(cors({
+//     origin: 'http://localhost:5173', 
+//     credentials: true, 
+//   }));
+
+    
 connectDB(); // connect to MongoDB
 
 //body parser middleware
