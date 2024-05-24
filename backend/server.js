@@ -12,10 +12,10 @@ import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 const port = process.env.PORT;
 const app = express()
-import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
+// import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 
 app.use(cors({
-    origin: ALLOWED_ORIGIN, 
+    origin: 'https://swiftcart-fw2u.onrender.com', 
     credentials: true, 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
