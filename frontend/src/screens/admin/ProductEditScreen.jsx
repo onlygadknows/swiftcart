@@ -11,6 +11,7 @@ import {
 } from "../../slices/productsApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../../components/FormContainer";
+import "../../assets/styles/custom_css.css";
 
 const ProductEditScreen = () => {
   const { id: productId } = useParams();
@@ -95,90 +96,92 @@ const ProductEditScreen = () => {
       </Link>
 
       <FormContainer>
-        <h1>Edit Product</h1>
-        {loadingUpdate && <Loader />}
+        <div className="product-edit-screen">
+          <h1>Edit Product</h1>
+          {loadingUpdate && <Loader />}
 
-        {isLoading ? (
-          <Loader />
-        ) : error ? (
-          <Message variant="danger">{error}</Message>
-        ) : (
-          <Form onSubmit={submitHandler}>
-            <Form.Group controlId="name" className="my-2">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="name"
-                placeholder="Enter Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+          {isLoading ? (
+            <Loader />
+          ) : error ? (
+            <Message variant="danger">{error}</Message>
+          ) : (
+            <Form onSubmit={submitHandler}>
+              <Form.Group controlId="name" className="my-2">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="name"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-            <Form.Group controlId="image" className="my-2">
-              <Form.Label>Upload Image</Form.Label>
-              {/* <Form.Control
+              <Form.Group controlId="image" className="my-2">
+                <Form.Label>Upload Image</Form.Label>
+                {/* <Form.Control
                 type="text"
                 placeholder="Upload Image URL"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control> */}
-              <Form.Control
-                type="file"
-                label="Choose file"
-                onChange={uploadFileHandler}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="price" className="my-2">
-              <Form.Label>Price</Form.Label>
-              <Form.Control
-                type="name"
-                placeholder="Enter Price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="brand" className="my-2">
-              <Form.Label>Brand</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Brand Name"
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-              ></Form.Control>
-              <Form.Group controlId="brand" className="my-2">
-                <Form.Label>Category</Form.Label>
                 <Form.Control
-                  type="text"
-                  placeholder="Enter Category Name"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
+                  type="file"
+                  label="Choose file"
+                  onChange={uploadFileHandler}
                 ></Form.Control>
               </Form.Group>
-            </Form.Group>
-            <Form.Group controlId="description" className="my-2">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
-            <Form.Group controlId="countInStock" className="my-2">
-              <Form.Label>Count in Stock</Form.Label>
-              <Form.Control
-                type="number"
-                placeholder="How many stocks?"
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
-              ></Form.Control>
-            </Form.Group>
+              <Form.Group controlId="price" className="my-2">
+                <Form.Label>Price</Form.Label>
+                <Form.Control
+                  type="name"
+                  placeholder="Enter Price"
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="brand" className="my-2">
+                <Form.Label>Brand</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Brand Name"
+                  value={brand}
+                  onChange={(e) => setBrand(e.target.value)}
+                ></Form.Control>
+                <Form.Group controlId="brand" className="my-2">
+                  <Form.Label>Category</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Category Name"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  ></Form.Control>
+                </Form.Group>
+              </Form.Group>
+              <Form.Group controlId="description" className="my-2">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="countInStock" className="my-2">
+                <Form.Label>Count in Stock</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="How many stocks?"
+                  value={countInStock}
+                  onChange={(e) => setCountInStock(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
 
-            <Button type="submit" variant="primary" className="my-2">
-              EDIT
-            </Button>
-          </Form>
-        )}
+              <Button type="submit" variant="primary" className="my-2 global-btn">
+                EDIT
+              </Button>
+            </Form>
+          )}
+        </div>
       </FormContainer>
     </>
   );

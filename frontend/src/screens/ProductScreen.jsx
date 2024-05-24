@@ -22,6 +22,7 @@ import { addToCart } from "../slices/cartSlice";
 import { toast } from "react-toastify";
 import { formatDate } from "../utils/dateConvertUtils";
 import Meta from "../components/Meta";
+import "../assets/styles/custom_css.css";
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
@@ -59,7 +60,7 @@ const ProductScreen = () => {
       refetch();
       toast.success("Review Submitted");
     } catch (err) {
-      toast.error(err?.data?.message || err.error)
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -83,7 +84,7 @@ const ProductScreen = () => {
         </Message>
       ) : (
         <>
-        <Meta title={product.name} />
+          <Meta title={product.name} />
           <Row>
             <Col md={5}>
               <Image
@@ -106,7 +107,10 @@ const ProductScreen = () => {
                   />
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  Price: <span className="peso">&#x20B1;</span> {product.price}
+                  <strong>
+                  Price: <span>&#x20B1;</span> {product.price}
+                  </strong>
+                   
                 </ListGroup.Item>
                 <ListGroup.Item>{product.description}</ListGroup.Item>
               </ListGroup>
@@ -118,7 +122,7 @@ const ProductScreen = () => {
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>{product.price}</strong>
+                        <strong><span>&#x20B1;</span>{product.price}</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -160,7 +164,7 @@ const ProductScreen = () => {
 
                   <ListGroup.Item>
                     <Button
-                      className="btn-block"
+                      className="btn-block product-btn"
                       type="button"
                       disabled={product.countInStock === 0}
                       onClick={addToCartHandler}
@@ -172,7 +176,7 @@ const ProductScreen = () => {
               </Card>
             </Col>
           </Row>
-          <Row className="review">
+          <Row className="mt-3 review">
             <Col md={6}>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Message>No Reviews</Message>}
@@ -218,6 +222,7 @@ const ProductScreen = () => {
                         disabled={loadingProductReview}
                         type="submit"
                         variant="primary"
+                        className="btn-block product-btn"
                       >
                         Submit
                       </Button>

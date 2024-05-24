@@ -48,68 +48,69 @@ const RegisterScreen = () => {
   };
   return (
     <FormContainer>
-      <h1>Register</h1>
-      <Form onSubmit={submitHandler}>
-        
-        <Form.Group controlId="email" className="my-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+      <div className="form-container">
+        <h1>Register</h1>
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId="email" className="my-3">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId="email" className="my-3">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId="email" className="my-3">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId="password" className="my-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId="password" className="my-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Form.Group controlId="confirmPassword" className="my-3">
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+          <Form.Group controlId="confirmPassword" className="my-3">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
 
-        <Button
-          type="submit"
-          variant="primary"
-          className="mt-2"
-          disabled={isLoading}
-        >
-          Register
-        </Button>
-        {isLoading && <Loader />}
-      </Form>
+          <Button
+            type="submit"
+            variant="primary"
+            className="mt-2 global-btn"
+            disabled={isLoading}
+          >
+            Register
+          </Button>
+          {isLoading && <Loader />}
+        </Form>
 
-      <Row className="py-3">
-        <Col>
-          Already have an account?{" "}
-          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Login Here
-          </Link>
-        </Col>
-      </Row>
+        <Row className="py-3 form-links">
+          <Col>
+            <p>Already have an account?{" "}</p>
+            <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+              Login Here
+            </Link>
+          </Col>
+        </Row>
+      </div>
     </FormContainer>
   );
 };

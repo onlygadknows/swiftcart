@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { saveShippingAddress } from "../slices/cartSlice";
 import FormContainer from "../components/FormContainer";
 import CheckoutSteps from "../components/CheckoutSteps";
+import '../assets/styles/custom_product.css'
 
 const shippingScreen = () => {
   const cart = useSelector((state) => state.cart);
@@ -27,7 +28,7 @@ const shippingScreen = () => {
   return (
     <FormContainer>
       <CheckoutSteps step1 step2 />
-
+      <div className="shipping-screen">
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address" className="my-2">
@@ -70,10 +71,12 @@ const shippingScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className="my-2">
+        <Button type="submit" variant="primary" className="my-2 global-btn">
           Continue
         </Button>
       </Form>
+      </div>
+      
     </FormContainer>
   );
 };

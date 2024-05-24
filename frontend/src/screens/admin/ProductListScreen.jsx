@@ -69,7 +69,7 @@ const ProductListScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
-          <Table striped hover bordered responsive className="table-sm">
+          <Table striped hover bordered responsive className="table-sm" variant="dark">
             <thead>
               <tr>
                 <th>ID</th>
@@ -94,11 +94,13 @@ const ProductListScreen = () => {
                   <td>{product.brand}</td>
                   <td>{product.category}</td>
                   <td>
+                  <div className="buttons">
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                      <Button variant="light" className="btn-sm mx-2">
+                      <Button variant="light" className="btn-sm m-2">
                         <FaEdit />
                       </Button>
                     </LinkContainer>
+                   
                     <Button
                       variant="danger"
                       className="btn-sm"
@@ -106,6 +108,8 @@ const ProductListScreen = () => {
                     >
                       <FaTrash style={{ color: "white" }} />
                     </Button>
+                    </div>
+               
                   </td>
                 </tr>
               ))}

@@ -1,7 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .custom-navbar {
     background-color: #333;
-
 }
+
 
 .brand-logo {
     width: 50px;
@@ -30,16 +36,136 @@
 
 th, td {
     text-align: center;
+
 }
 
 .shopping-cart {
-    background-color: #CDE8E5;
+    background-color: #333;
     border-radius: 10px;
     margin: 5px 0;
     padding: 15px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.shopping-cart p {
+    color: #fff;
+    font-size: 20px;
 }
 
 .btn-block {
-    background-color: #456672;
+    background-color: #333;
+    border: none;
+    outline: none;
 }
 
+.btn-block:hover {
+    background-color: #3333;
+    border: none;
+    outline: none;
+}
+
+.form-container {
+    margin-top: 20px;
+    background-color: #333;
+    padding: 20px 25px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.global-btn {
+    background-color: #fff;
+    color: #333;
+    border: none;
+    outline: none;
+}
+
+.global-btn:hover {
+    background-color: #F8993F;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.form-container h1 {
+    color: #fff;
+}
+
+.form-container p {
+    color: #fff;
+}
+
+Label {
+    color: #fff;
+}
+
+.profile-container {
+    background-color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.profile-container h2 {
+    color: #fff;
+}
+
+
+.checkout-btn:hover {
+    background-color: #F8993F;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.placeorder-btn:hover {
+    background-color: #F8993F;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.user-edit-screen {
+    background-color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.user-edit-screen h1 {
+    color: #fff;
+}
+
+.product-edit-screen {
+    background-color: #333;
+    padding: 15px;
+    border: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.product-edit-screen h1 {
+    color: #fff;
+}
+
+.product-btn:hover {
+    background-color: #F8993F;
+}
+
+.subtotal {
+    font-size: 25px;
+}
+
+.subtotal span {
+    font-size: 30px;
+}
+
+.form-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link {
+    width: 150px;
+}
+
+/* .buttons {
+    display: flex;
+} */

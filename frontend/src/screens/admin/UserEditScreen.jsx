@@ -10,7 +10,7 @@ import {
 } from "../../slices/usersApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../../components/FormContainer";
-
+import '../../assets/styles/custom_css.css'
 const UserEditScreen = () => {
   const { id: userId } = useParams();
 
@@ -51,12 +51,14 @@ const UserEditScreen = () => {
 
   return (
     <>
-      <Link to="/admin/userlist" className="btn btn-light my-3">
+      <Link to="/admin/userlist" className="btn btn-light my-3 global-btn">
         Go back
       </Link>
 
       <FormContainer>
+        <div className="user-edit-screen">
         <h1>Edit User</h1>
+        
         {loadingUpdate && <Loader />}
 
         {isLoading ? (
@@ -94,11 +96,13 @@ const UserEditScreen = () => {
               ></Form.Check>
             </Form.Group>
 
-            <Button type="submit" variant="primary" className="my-2">
-              EDIT
+            <Button type="submit" variant="primary" className="my-2 global-btn">
+              UPDATE USER
             </Button>
           </Form>
         )}
+        </div>
+       
       </FormContainer>
     </>
   );

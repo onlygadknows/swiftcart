@@ -32,8 +32,8 @@ const HomeScreen = () => {
         </Message>
       ) : (
         <>
-        <Meta title="Welcome to SwiftCart" />
-          <h1>Check out awesome deals.</h1>
+        <Meta title="SwiftCart - Equip your inventory with ease!" />
+          <h1>Check out our awesome deals!</h1>
           <Row>
             {data.products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>

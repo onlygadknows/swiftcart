@@ -8,6 +8,7 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { Link, useNavigate } from "react-router-dom";
 import { useCreateOrderMutation } from "../slices/ordersApiSlice";
 import { clearCartItems } from "../slices/cartSlice";
+import '../assets/styles/custom_css.css'
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -153,7 +154,7 @@ const PlaceOrderScreen = () => {
               <ListGroup.Item>
                 <Button
                   type="button"
-                  className="btn-block"
+                  className="btn-block placeorder-btn"
                   disabled={cart.cartItems.length === 0}
                   onClick={placeOrderHandler}
                 >
