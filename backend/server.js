@@ -10,8 +10,10 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
+import protect from './utils/protect.js';
 const port = process.env.PORT;
 const app = express()
+
 // import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 
 // app.use(cors({
@@ -32,7 +34,7 @@ const app = express()
 //   }));
 
 const corsOptions = {
-    origin: '*',
+    origin: 'https://swiftcart-fw2u.onrender.com',
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
@@ -51,10 +53,10 @@ app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 
 
-app.use('/api/products', productRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/upload', uploadRoutes);
+app.use('/api/products', protect, productRoutes);
+app.use('/api/users', protect, userRoutes);
+app.use('/api/orders', protect, orderRoutes);
+app.use('/api/upload', protect, uploadRoutes);
 app.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYPAL_CLIENT_ID}));
 
 const __dirname = path.resolve();
