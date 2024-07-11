@@ -14,17 +14,15 @@ const port = process.env.PORT;
 const app = express()
 // import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 
-// app.use(cors({
-//     origin: '*', 
-//     credentials: true, 
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
-// }));
-
 app.use(cors({
+    origin: 'https://swiftcart-fw2u.onrender.com/', 
     credentials: true, 
-    origin: '*', 
 }));
+
+// app.use(cors({
+//     credentials: true, 
+//     origin: '*', 
+// }));
 
 // app.use(cors({
 //     origin: 'http://localhost:5173', 
