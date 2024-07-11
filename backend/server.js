@@ -13,19 +13,9 @@ import uploadRoutes from './routes/uploadRoutes.js';
 const port = process.env.PORT;
 const app = express()
 
-// import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
+import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 
-// app.use(cors({
-//     origin: '*', 
-//     credentials: true, 
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
-// }));
 
-// app.use(cors({
-//     credentials: true, 
-//     origin: '*', 
-// }));
 
 // app.use(cors({
 //     origin: 'http://localhost:5173', 
@@ -33,10 +23,8 @@ const app = express()
 //   }));
 
 const corsOptions = {
-    origin: 'https://swiftcart-fw2u.onrender.com',
+    origin: ALLOWED_ORIGIN,
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
   };
   app.use(cors(corsOptions));
 
