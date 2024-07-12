@@ -26,8 +26,9 @@ const corsOptions = {
     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
 
   };
-app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
+
+app.use(cors(corsOptions));
 connectDB(); // connect to MongoDB
 
 //body parser middleware
