@@ -27,7 +27,7 @@ const corsOptions = {
 
   };
 app.use(cors(corsOptions));
-app.options('*', cors());
+app.options('*', cors(corsOptions));
 connectDB(); // connect to MongoDB
 
 //body parser middleware
