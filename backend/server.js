@@ -11,9 +11,9 @@ import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 const port = process.env.PORT;
-const app = express()
-
+const app = express();
 import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
+
 // app.use(cors({
 //     origin: 'http://localhost:5173', 
 //     credentials: true, 
