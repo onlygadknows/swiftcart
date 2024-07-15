@@ -20,11 +20,18 @@ import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 //   }));
 
 const corsOptions = {
-    origin: ['https://swift-cart.onrender.com', 'https://swift-cart.onrender.com/login', 'https://swift-cart.onrender.com/register'],
+    origin: (origin, callback) => {
+        if (!origin || origin.includes('swift-cart.onrender.com')) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
-  };
+};
+
 // app.options('*', cors(corsOptions));
 
 app.use(cors(corsOptions));
