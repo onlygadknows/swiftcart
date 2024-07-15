@@ -1,1 +1,1 @@
-export const ALLOWED_ORIGIN = "https://swiftcart-fw2u.onrender.com";
+export const ALLOWED_ORIGIN = "https://swift-cart.onrender.com";

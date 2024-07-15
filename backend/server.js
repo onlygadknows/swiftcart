@@ -20,7 +20,7 @@ import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 //   }));
 
 const corsOptions = {
-    origin: "https://swift-cart.onrender.com",
+    origin: ALLOWED_ORIGIN,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     // allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
@@ -38,11 +38,11 @@ app.use(express.urlencoded({extended: true}))
 app.use(cookieParser())
 
 
-app.use('/api/products', productRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/upload', uploadRoutes);
-app.get('/api/config/paypal', (req, res) => res.send({clientId: process.env.PAYPAL_CLIENT_ID}));
+app.use('/api/products', cors(corsOptions), productRoutes);
+app.use('/api/users', cors(corsOptions), userRoutes);
+app.use('/api/orders', cors(corsOptions), orderRoutes);
+app.use('/api/upload', cors(corsOptions), uploadRoutes);
+app.get('/api/config/paypal', cors(corsOptions), (req, res) => res.send({clientId: process.env.PAYPAL_CLIENT_ID}));
 
 const __dirname = path.resolve();
 app.use('/uploads', express.static(path.join(__dirname, '/uploads'))); // Correctly set up static file serving
