@@ -1,6 +1,6 @@
 // export const BASE_URL =
 //   process.env.NODE_ENV === "development" ? "http://localhost8000" : "";
-export const BASE_URL = "http://localhost:8000/";
+export const BASE_URL = "http://localhost:8000";
 export const BASE = "http://localhost:8000";
 export const PRODUCTS_URL = "/api/products";
 export const PRODUCTS_URL_ID = "/api/products/:id";
