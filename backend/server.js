@@ -20,7 +20,7 @@ import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 //   }));
 
 const corsOptions = {
-    origin: 'https://swift-cart.onrender.com',
+    origin: ['https://swift-cart.onrender.com', 'https://swift-cart.onrender.com/login', 'https://swift-cart.onrender.com/register'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
