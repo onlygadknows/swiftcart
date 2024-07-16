@@ -1,6 +1,5 @@
 import path from 'path';
 import express from 'express';
-import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 dotenv.config();
@@ -12,29 +11,7 @@ import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 const port = process.env.PORT;
 const app = express();
-import { ALLOWED_ORIGIN } from './utils/allowedOrigin.js';
 
-// app.use(cors({
-//     origin: 'http://localhost:5173', 
-//     credentials: true, 
-//   }));
-
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (!origin || origin.includes('swift-cart.onrender.com')) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Origin', 'Content-Type', 'Accept', 'Authorization', 'X-Requested-With'],
-};
-
-// app.options('*', cors(corsOptions));
-
-app.use(cors(corsOptions));
 connectDB(); // connect to MongoDB
 
 //body parser middleware
@@ -43,7 +20,6 @@ app.use(express.urlencoded({extended: true}))
 
 //cookie parser middleware - allow to access cookies and the jwt
 app.use(cookieParser())
-
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
