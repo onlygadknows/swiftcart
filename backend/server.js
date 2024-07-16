@@ -9,9 +9,8 @@ import productRoutes from './routes/productRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 4000;
 const app = express();
-
 
 connectDB(); // connect to MongoDB
 
